@@ -1,0 +1,19 @@
+# Disable Password Expiration for the Administrator Accounts - (Administrator and Build)
+- name: Disabling Local Administrator and it's Password Expiration...
+  ansible.windows.win_user:
+    name: Administrator
+    password_never_expires: true
+    account_disabled: true
+
+- name: Disabling "{{ build_username }}" Password Expiration...
+  ansible.windows.win_user:
+    name: "{{ build_username }}"
+    password_never_expires: true
+
+# Enable Remote Desktop.
+- name: Enabling Remote Desktop...
+  ansible.windows.win_powershell:
+    script: |
+      Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0 | Out-Null
+      Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 0
+      Enable-NetFirewallRule -Group '@FirewallAPI.dll,-28752'

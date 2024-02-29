@@ -1,0 +1,52 @@
+// VCenter config
+vsphere_server              = "vc01.datacenter.local"
+vsphere_user                = "administrator@vsphere.local"
+vsphere_password            = "Pa$$w0rD"
+vsphere_folder              = "Templates"
+vsphere_insecure_connection = "true"
+vsphere_datacenter          = "DC"
+vsphere_compute_cluster     = "Devel"
+vsphere_portgroup_name      = "DC LAN"
+vsphere_datastore           = "datastore1"
+
+// VM config
+vm_name                 = "tpl-win10-consumer-pro-en_us"
+vm_cpu_count            = "4"
+vm_disk_size            = "64000"
+vm_disk_controller_type = ["pvscsi"]
+vm_guest_os_type           = "windows9_64Guest"
+
+// Boot and Provisioning Settings
+vm_boot_wait        = "3s"
+vm_boot_command     = ["<spacebar>"]
+vm_shutdown_command = "shutdown /s /t 10 /f /d p:4:1 /c \"Shutdown by Packer\""
+# vm_shutdown_command = "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\sysprep.xml /quiet /generalize /oobe /shutdown"
+
+// Communicator Settings and Credentials
+build_username = "winrm"
+build_password = "Pa$$w0Rd"
+
+// Images, scripts and config 
+os_iso_path  = "[Install] ISO/Windows/en-us_windows_10_consumer_editions_version_22h2_updated_feb_2024_x64_dvd.iso"
+config_files = ["drivers/pvscsi"]
+script_files = ["scripts/enable-rdp.cmd", "scripts/disable-tls.ps1"]
+
+// Installation Operating System Metadata
+vm_inst_os_language = "en-US"
+vm_inst_os_keyboard = "en-US"
+vm_inst_os_image    = "Windows 10 Pro"
+vm_inst_os_kms_key  = "W269N-WFGWX-YVC9B-4J6C9-T83GX"
+# vm_inst_os_image   = "Windows 10 Enterprise"
+# vm_inst_os_kms_key = "NPPR9-FWDCX-D2C8J-H872K-2YT43"
+
+// Guest Operating System Metadata
+vm_guest_os_language = "en-US"
+vm_guest_os_keyboard = "en-US"
+vm_guest_os_timezone = "Eastern Time"
+
+// Template and Content Library Settings
+common_content_library_name        = "Templates"
+common_content_library_skip_export = "true"
+common_template_conversion         = "true"
+common_content_library_ovf         = "false"
+common_content_library_destroy     = "true" 
