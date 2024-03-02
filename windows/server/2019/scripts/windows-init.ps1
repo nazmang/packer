@@ -23,6 +23,11 @@ winrm quickconfig -quiet
 winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 winrm set winrm/config/service/auth '@{Basic="true"}'
 
+# Set WinRM service to start automatically 
+Write-Output 'Setting the Windows Remote Management autostart...' 
+Set-Service -Name 'WinRM' -StartupType Automatic
+Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Services\WinRM' -Name 'DelayedAutoStart' -Value 0
+
 # Allow Windows Remote Management in the Windows Firewall.
 Write-Output 'Allowing Windows Remote Management in the Windows Firewall...'
 netsh advfirewall firewall set rule group="Windows Remote Administration" new enable=yes

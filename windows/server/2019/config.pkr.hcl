@@ -49,7 +49,7 @@ locals {
   iso_paths                  = ["[${var.common_iso_datastore}] ${var.iso_path}/${var.iso_file}", "[] /vmimages/tools-isoimages/${var.vm_guest_os_family}.iso"]
   manifest_date              = formatdate("YYYY-MM-DD hh:mm:ss", timestamp())
   manifest_path              = "${path.cwd}/output/"
-  manifest_output            = "${local.manifest_path}${local.manifest_date}.tfvars.json"
+  manifest_output            = "${local.manifest_path}mainfest.auto.tfvars.json"
   bucket_name                = replace("${var.vm_guest_os_family}-${var.vm_guest_os_name}-${var.vm_guest_os_version}", ".", "")
   bucket_description         = "${var.vm_guest_os_family} ${var.vm_guest_os_name} ${var.vm_guest_os_version}"
 }
