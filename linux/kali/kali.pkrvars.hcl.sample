@@ -1,0 +1,21 @@
+// VCenter config
+vsphere_endpoint            = "vc1.vsphere.local"
+vsphere_username            = "administrator@vsphere.local"
+vsphere_password            = "PA$$w0rd"
+vsphere_folder              = "Templates"
+vsphere_insecure_connection = "true"
+vsphere_datacenter          = "DC"
+vsphere_cluster             = "Local"
+vsphere_network             = "DataCenter"
+vsphere_datastore           = "datastore1"
+
+kali_iso_path = "[Install] ISO/kali-linux-2024.1-installer-amd64.iso"
+kali_iso_checksum = "sha256:c150608cad5f8ec71608d0713d487a563d9b916a0199b1414b6ba09fce788ced"
+
+// VM config
+root_ssh_key = <<EOT
+ssh-rsa AAAABBCCDDEEFF==
+EOT
+root_password = "Pa$$w0rd1!"
+kali_user_name = "kali"
+kali_user_password = "KaliPa$$wd"
